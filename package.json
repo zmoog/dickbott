@@ -1,6 +1,6 @@
 {
   "name": "dickbott",
-  "version": "0.1.8",
+  "version": "0.1.15",
   "description": "A Framewotk for building bots for ChatOps",
   "directories": {
     "test": "test"
@@ -25,14 +25,18 @@
   "dependencies": {
     "inversify": "^4.3.0",
     "lodash": "^4.17.4",
-    "reflect-metadata": "^0.1.10"
+    "jenkins": "^0.20.0",
+    "request": "^2.81.0",
+    "request-promise-native": "^1.0.4"
   },
   "devDependencies": {
     "@types/expect.js": "^0.3.29",
     "@types/lodash": "^4.14.78",
     "@types/mocha": "^2.2.43",
     "@types/node": "^8.0.46",
+    "aws-sdk": "^2.138.0",
     "expect.js": "^0.3.1",
+    "reflect-metadata": "^0.1.10",
     "typemoq": "^2.0.1",
     "typescript": "^2.5.3"
   },
