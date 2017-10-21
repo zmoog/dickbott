@@ -60,3 +60,6 @@ typings/
 # Jetbrains
 .idea
 
+# smild
+dist
+
