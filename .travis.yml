@@ -1,27 +1,17 @@
 language: node_js
-addons:
-  apt:
-    sources:
-    - ubuntu-toolchain-r-test
-    packages:
-    - g++-4.8
 node_js:
 - '6'
 install:
-- export CXX=g++-4.8
-- "$CXX --version"
 - npm install smild@4.8.1 -g
 - npm install
 script:
 - smild test
 - smild build
 deploy:
-  skip_cleanup: true
   provider: npm
   email: maurizio.branca@gmail.com
   api_key:
-    secure:
-      secure: VG2TKF/VpIHqAlxBJ/7FXtu0eHdXGE5lVy9ZRcyF2GXTlqL1Qb3CE+xv4hD7w3DoQP2UWz+FKZl0/7zaEVKmGEwoiyVmrBzpRkqXXUlbgC9sDkxOKfx+GBIWgBO+FgZ/ScA1wqsymeUB9GdXkB9FEunaLub5wzhB6+pnvVQDyrqyvGldox/UkvaTig5KjmQHvAfWO3wsYN76yvblCm5ORg/gskA0SbnEaXNubuc/bi5lmLbE3wge6v6NXiZkzSrtvPOn9UthtqYpvHGnrAFA6ArP0sTRMfpzEmfN3bdDnDuJY8GC3BQX1gOb6yGXZzaSZ23ZAv7XcC7L7XRJ4u5VgIWdxfr4MvtCbveXQyHj75FnHEZ4k0KUH6vceIPgDfgbnWre9AZz8Q95/IDJm4f08GdaioMTsWBgnaNBqFzgnhgrNjgej71vXyid3L32cUwYfnNjALBvUFIu/hY+n7cqORyc4XN8C+ZFiXCaiFH0nQcs8ogcBa6PGJjNnEy/pB/yA7BD06vJx0suNrn93WPec9R3KvcYmFEzCkZfCDez7D+SvTaD1FS8Thtd9CeI1ikz1MNegXmFZlrStIX5cPxu9K7aP7HpySNPxCmJxJQ0L9XnLCtdYdb9GE6Lj328oJoKMdMHA4H6YryVpBhrCYbWwaDUrlDRy5KwFyrZhA6Jo3g=
+    secure: AHwKhyZAlNx/ZQMghxkhwLcq+yYr4mn9qGDOzCYFuAMfSsB6DRrhQ9tkJiSK8nS1n5inbXK0/CuOx3agLS8/cNhkVXiWxK7w6lO8A7/RNx88JF82FQX6Pgp5lPUxDQoW1EyWe/guOQhnZT+SJzHGlnXfNaUhuKLs4BD/9OZwBT4+hI3qYtIZ7KYAlkdDcfw4yKCwftVdWTxPK49vF0Si4GCUZbD5Q8eVr8HNv/MHivZfFRflwRf3T8i6KZHwCJy4MqJ4eJjAfOqV+2n1a6Widwwza9bqvcZhyu9Us5vtTzZrUhzTLpOwlaquNgIINfbKYJjY3SHpjKwWr5UzcsfsfZYAjoRknCjc4JGLWs+EsdLVI9A1Hk8L8T+xc/ep0Is5maQZZmAsk8F5yVO2mpezHiNLUfb0ZA5w5JQUT1Thnuk0rfjxZOjpijplQdT4sTEa+wV6FEGE9maMV+lTgNlfKe1v5AevBQ2qjgA/6t/q0UANKcR1k+AcntpI7ntIrER0upu+oz2RLmgZcn6ErFq+crilYHFgIp8TfOUF1hMg8plja7bB4r1T9YAloT2+UYlqi5Uppb9C4t/osqYG9uJt9LOKi6FJ0Kof6jlG1O91+Z3zJLIvcumhoSu8pr2F1izykE83NZGifC6tSmePxqmw6PkJ9/tdHvm2lmrvkWjFzZs=
   on:
-    repo: zmoog/dickbott
     tags: true
+    repo: zmoog/dickbott
