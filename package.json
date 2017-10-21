@@ -34,6 +34,7 @@
     "@types/mocha": "^2.2.43",
     "@types/node": "^8.0.46",
     "expect.js": "^0.3.1",
-    "typemoq": "^2.0.1"
+    "typemoq": "^2.0.1",
+    "typescript": "^2.5.3"
   }
 }
