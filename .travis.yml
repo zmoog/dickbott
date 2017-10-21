@@ -1,0 +1,26 @@
+language: node_js
+addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - g++-4.8
+node_js:
+- '6'
+install:
+- export CXX=g++-4.8
+- "$CXX --version"
+- npm install smild@4.8.1 -g
+- npm install
+script:
+- smild test
+- smild build
+deploy:
+  skip_cleanup: true
+  provider: npm
+  email: maurizio.branca@gmail.com
+  api_key:
+    secure: xxx
+  on:
+    repo: zmoog/dickbott
+    tags: true
