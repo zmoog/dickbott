@@ -8,6 +8,7 @@ script:
 - smild test
 - smild build
 deploy:
+  skip_cleanup: true
   provider: npm
   email: maurizio.branca@gmail.com
   api_key:
