@@ -1,1 +1,1 @@
-export { default as Intent } from "./intent/Intent";
+export { Intent } from "./intent/Intent";
