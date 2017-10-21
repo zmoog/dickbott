@@ -1,8 +1,7 @@
 {
   "name": "dickbott",
-  "version": "0.1.5",
+  "version": "0.1.7",
   "description": "A Framewotk for building bots for ChatOps",
-  "main": "index.js",
   "directories": {
     "test": "test"
   },
