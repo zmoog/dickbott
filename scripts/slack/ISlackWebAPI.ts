@@ -1,6 +1,6 @@
-import { PostMessageRequest, SlackWebAPIResponse } from "./Types";
+import { PostMessageRequest } from "./Types";
 
 export interface ISlackWebAPI {
-    postMessage(message: PostMessageRequest): Promise<SlackWebAPIResponse>;
+    postMessage(message: PostMessageRequest): Promise<void>;
 }
 
