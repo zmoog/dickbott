@@ -17,6 +17,6 @@ export {IAutoScalingService} from "./aws/autoscaling/IAutoScalingService";
 export {AutoScalingService} from "./aws/autoscaling/AutoScalingService";
 export {FulfillmentRequest, FulfillmentResponse, Metadata, Result} from "./dialogflow/Types";
 export {IModule} from "./modules/IModule";
-export {IIntentDispatcher} from "../dist/dispatcher/IIntentDispatcher";
+export {IIntentDispatcher} from "./dispatcher/IIntentDispatcher";
 export {IntentDispatcher} from "./dispatcher/IntentDispatcher";
 export {DickBottEngine} from "./DickBottEngine";
