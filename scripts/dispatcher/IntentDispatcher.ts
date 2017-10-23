@@ -1,5 +1,4 @@
 import {inject, injectable, interfaces} from "inversify";
-import "reflect-metadata";
 import {IIntentDispatcher} from "./IIntentDispatcher";
 import {Intent} from "../intent/Intent";
 

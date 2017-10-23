@@ -1,8 +1,6 @@
 import { injectable } from "inversify";
 import { AutoScaling } from "aws-sdk";
 import { IAutoScalingService } from "./IAutoScalingService";
-import "reflect-metadata";
-
 
 @injectable()
 export class AutoScalingService implements IAutoScalingService {

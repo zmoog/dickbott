@@ -1,6 +1,5 @@
 import {DefaultContainer} from "./utils/containerDecorators";
 import {interfaces} from "inversify";
-import "reflect-metadata";
 import {IModule} from "./modules/IModule";
 import {DickBottModule} from "./modules/DickBottModule";
 

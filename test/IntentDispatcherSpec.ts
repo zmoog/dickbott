@@ -1,6 +1,6 @@
+import "reflect-metadata";
 import {Container, injectable} from "inversify";
 import expect = require("expect.js");
-import "reflect-metadata";
 import {Intent} from "../scripts/intent/Intent";
 import {IIntentDispatcher} from "../scripts/dispatcher/IIntentDispatcher";
 import {IntentDispatcher} from "../scripts/dispatcher/IntentDispatcher";

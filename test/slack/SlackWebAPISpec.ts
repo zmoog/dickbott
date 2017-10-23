@@ -1,6 +1,6 @@
+import "reflect-metadata";
 import {IMock, Mock, Times, It} from "typemoq";
 import expect = require("expect.js");
-import "reflect-metadata";
 import {ISlackWebAPI} from "../../scripts/slack/ISlackWebAPI";
 import {IHttpClient} from "../../scripts/http/IHttpClient";
 import {PostMessageRequest, SlackConfig, SlackWebAPIResponse} from "../../scripts/slack/Types";
