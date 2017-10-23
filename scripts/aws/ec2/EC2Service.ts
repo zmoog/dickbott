@@ -1,20 +1,19 @@
-import { IEC2Service } from "./IEC2Service";
-import { EC2 } from "aws-sdk";
-import { injectable } from "inversify";
-import "reflect-metadata";
-
+import {IEC2Service} from "./IEC2Service";
+import {EC2} from "aws-sdk";
+import {injectable} from "inversify";
+import {flatMap} from "lodash";
 
 @injectable()
 export class EC2Service implements IEC2Service {
-
-    private ec2: EC2;
+    private ec2: EC2 = new EC2();
 
     constructor() {
-        this.ec2 = new EC2();
     }
 
-    describeInstances(params: EC2.Types.DescribeInstancesRequest): Promise<EC2.Types.DescribeInstancesResult> {
-        return this.ec2.describeInstances(params).promise();
+    describeInstances(params: EC2.Types.DescribeInstancesRequest): Promise<EC2.Types.InstanceList> {
+        return this.ec2.describeInstances(params).promise().then(
+            result => flatMap(result.Reservations, (reservation) => reservation.Instances)
+        );
     }
 
     stopInstances(params: EC2.Types.StopInstancesRequest): Promise<EC2.Types.StopInstancesResult> {

@@ -1,25 +1,24 @@
-import { injectable, inject } from "inversify";
-import { ISlackWebAPI } from "./ISlackWebAPI";
-import { SlackConfig, PostMessageRequest, SlackWebAPIResponse } from "./Types";
-import { IHttpClient } from "../http/IHttpClient";
-import "reflect-metadata";
+import {injectable, inject} from "inversify";
+import {ISlackWebAPI} from "./ISlackWebAPI";
+import {PostMessageRequest, SlackWebAPIResponse} from "./Types";
+import {IHttpClient} from "../http/IHttpClient";
 
 
 /***
  * The Slack Web API is documented on https://api.slack.com/web
-*/
+ */
 @injectable()
 export class SlackWebAPI implements ISlackWebAPI {
 
-    constructor(
-        @inject("SlackConfig") private slackConfig: SlackConfig,
-        @inject("HttpClient") private httpClient: IHttpClient) { }
+    constructor(@inject("SlackConfig") private slackConfig: SlackConfig,
+                @inject("HttpClient") private httpClient: IHttpClient) {
+    }
 
     /**
      *  For the details on this API check https://api.slack.com/methods/chat.postMessage
      */
-    async postMessage(message: PostMessageRequest): Promise<SlackWebAPIResponse> {
-        return this.httpClient.post<any, SlackWebAPIResponse>(
+    async postMessage(message: PostMessageRequest): Promise<void> {
+        let response: SlackWebAPIResponse = await this.httpClient.post<any, SlackWebAPIResponse>(
             "https://slack.com/api/chat.postMessage",
             {
                 token: this.slackConfig.botUserOAuthAccessToken,
@@ -29,5 +28,12 @@ export class SlackWebAPI implements ISlackWebAPI {
                 as_user: false
             }
         );
+        if (!response.ok)
+            throw new Error(`Error in slack send process: ${response.error}`);
     }
+}
+
+export interface SlackConfig {
+    botUserOAuthAccessToken: string;
+    defaultChannel: string;
 }
