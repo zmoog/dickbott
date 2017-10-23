@@ -1,5 +1,6 @@
 import { injectable } from "inversify";
 import { IHttpClient } from "./IHttpClient";
+import "reflect-metadata";
 
 let rp = require("request-promise-native");
 

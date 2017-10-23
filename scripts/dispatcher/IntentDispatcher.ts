@@ -4,7 +4,7 @@ import {IIntentDispatcher} from "./IIntentDispatcher";
 import {Intent} from "../intent/Intent";
 
 @injectable()
-export class IntentDispatcher implements IIntentDispatcher{
+export class IntentDispatcher implements IIntentDispatcher {
     constructor(@inject("Container") private container: interfaces.Container) {
     }
 
