@@ -28,7 +28,7 @@ describe("SlackWebAPISpec, given a message to send in a Slack channel", () => {
             }).returns(async () => ({ok: false, error: "errorMessage"}));
         });
 
-        it("should erase a error", async () => {
+        it("should raise a error", async () => {
             let error: string;
             try {
                 await slack.postMessage({text: "test", channel: "#mururoa"});
@@ -47,7 +47,7 @@ describe("SlackWebAPISpec, given a message to send in a Slack channel", () => {
             }).returns(async () => ({ok: true}));
         });
 
-        it("should not erase a error", async () => {
+        it("should not raise a error", async () => {
             await slack.postMessage({text: "test", channel: "#mururoa"});
         });
     });
