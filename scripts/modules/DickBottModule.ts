@@ -12,6 +12,8 @@ import {EC2Service} from "../aws/ec2/EC2Service";
 import {IAutoScalingService} from "../aws/autoscaling/IAutoScalingService";
 import {AutoScalingService} from "../aws/autoscaling/AutoScalingService";
 import {IntentDispatcher} from "../dispatcher/IntentDispatcher";
+import {IDynamoDBService} from "../aws/dynamodb/IDynamoDBService";
+import {DynamoDBService} from "../aws/dynamodb/DynamoDBService";
 
 
 export class DickBottModule implements IModule {
@@ -23,5 +25,6 @@ export class DickBottModule implements IModule {
         container.bind<IAutoScalingService>("AutoScalingService").to(AutoScalingService).inSingletonScope();
         container.bind<IIntentDispatcher>("IntentDispatcher").to(IntentDispatcher).inSingletonScope();
         container.bind<IJenkinsService>("JenkinsService").to(JenkinsService).inSingletonScope();
+        container.bind<IDynamoDBService>("DynamoDBService").to(DynamoDBService).inSingletonScope();
     }
 }
