@@ -1,10 +1,10 @@
 import "reflect-metadata";
-import {Container, injectable} from "inversify";
+import { Container, injectable } from "inversify";
 import expect = require("expect.js");
-import {Intent} from "../scripts/intent/Intent";
-import {IIntentDispatcher} from "../scripts/dispatcher/IIntentDispatcher";
-import {IntentDispatcher} from "../scripts/dispatcher/IntentDispatcher";
-import {IntentTestName} from "./fixtures/IntentTestName";
+import { Intent } from "../scripts/core/intent/Intent";
+import { IIntentDispatcher } from "../scripts/core/dispatcher/IIntentDispatcher";
+import { IntentDispatcher } from "../scripts/core/dispatcher/IntentDispatcher";
+import { IntentTestName } from "./fixtures/IntentTestName";
 
 let container = new Container();
 container.bind<Intent<{}, void>>("IntentTestName").to(IntentTestName).inSingletonScope();
@@ -30,8 +30,8 @@ describe("Given a IntentDispacher", () => {
     });
 
     describe("and i want to process a intent but exist a manager of it", () => {
-        it("Should process it", async() => {
-           expect(await subject.dispatch<{}, void>("IntentTestName", {})).to.be.eql(null);
+        it("Should process it", async () => {
+            expect(await subject.dispatch<{}, void>("IntentTestName", {})).to.be.eql(null);
         });
     });
 });

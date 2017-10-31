@@ -1,7 +1,7 @@
-import {injectable, inject} from "inversify";
-import {ISlackWebAPI} from "./ISlackWebAPI";
-import {PostMessageRequest, SlackWebAPIResponse} from "./Types";
-import {IHttpClient} from "../http/IHttpClient";
+import { injectable, inject } from "inversify";
+import { ISlackWebAPI } from "./ISlackWebAPI";
+import { PostMessageRequest, SlackWebAPIResponse } from "./Types";
+import { IHttpClient } from "../core/http/IHttpClient";
 
 
 /***
@@ -10,8 +10,8 @@ import {IHttpClient} from "../http/IHttpClient";
 @injectable()
 export class SlackWebAPI implements ISlackWebAPI {
 
-    constructor(@inject("SlackConfig") private slackConfig: SlackConfig,
-                @inject("HttpClient") private httpClient: IHttpClient) {
+    constructor( @inject("SlackConfig") private slackConfig: SlackConfig,
+        @inject("HttpClient") private httpClient: IHttpClient) {
     }
 
     /**

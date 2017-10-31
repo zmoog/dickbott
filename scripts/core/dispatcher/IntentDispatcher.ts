@@ -1,10 +1,10 @@
-import {inject, injectable, interfaces} from "inversify";
-import {IIntentDispatcher} from "./IIntentDispatcher";
-import {Intent} from "../intent/Intent";
+import { inject, injectable, interfaces } from "inversify";
+import { IIntentDispatcher } from "./IIntentDispatcher";
+import { Intent } from "../intent/Intent";
 
 @injectable()
 export class IntentDispatcher implements IIntentDispatcher {
-    constructor(@inject("Container") private container: interfaces.Container) {
+    constructor( @inject("Container") private container: interfaces.Container) {
     }
 
     dispatch<I, O>(intent: string, entities: I): Promise<O> {
