@@ -69,3 +69,6 @@ export type SlackConfig = {
     botUserOAuthAccessToken: string,
     defaultChannel: string
 }
+
+export type InteractiveComponentRequest = {}
+export type InteractiveComponentResponse = {}

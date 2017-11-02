@@ -1,7 +1,8 @@
-import {DefaultContainer} from "./utils/containerDecorators";
-import {interfaces} from "inversify";
-import {IModule} from "./modules/IModule";
-import {DickBottModule} from "./modules/DickBottModule";
+import { DefaultContainer } from "./utils/containerDecorators";
+import { interfaces } from "inversify";
+import { IModule } from "../modules/IModule";
+import { DickBottModule } from "../modules/DickBottModule";
+
 
 export class DickBottEngine {
     private modules: IModule[] = [];

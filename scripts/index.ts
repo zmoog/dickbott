@@ -1,7 +1,7 @@
 export { Intent } from "./core/intent/Intent";
 export { IHttpClient } from "./core/http/IHttpClient";
 export { HttpClient } from "./core/http/HttpClient";
-export { SlackMessage, Attachment, Field, SlackConfig, PostMessageRequest, SlackWebAPIResponse } from "./slack/Types";
+export { SlackMessage, Attachment, Field, SlackConfig, PostMessageRequest, SlackWebAPIResponse, InteractiveComponentRequest, InteractiveComponentResponse } from "./slack/Types";
 export { ISlackWebAPI } from "./slack/ISlackWebAPI";
 export { SlackWebAPI } from "./slack/SlackWebAPI";
 export { IJenkinsService, JenkinsInfo } from "./jenkins/IJenkinsService";
@@ -16,6 +16,8 @@ export { ApiGatewayService } from "./aws/apigateway/ApiGatewayService";
 export { IAutoScalingService } from "./aws/autoscaling/IAutoScalingService";
 export { AutoScalingService } from "./aws/autoscaling/AutoScalingService";
 export { FulfillmentRequest, FulfillmentResponse, Metadata, Result } from "./dialogflow/Types";
+export { FulfillmentHandler } from "./dialogflow/FulfillmentHandler";
+export { InteractiveComponentHandler } from "./slack/InteractiveComponentHandler";
 export { IModule } from "./modules/IModule";
 export { IIntentDispatcher } from "./core/dispatcher/IIntentDispatcher";
 export { IntentDispatcher } from "./core/dispatcher/IntentDispatcher";
