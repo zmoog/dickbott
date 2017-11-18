@@ -65,10 +65,33 @@ export type Confirm = {
     dismiss_text: string
 }
 
+export type Team = {
+    id: string
+    domain: string
+}
+
+export type Channel = {
+    id: string
+    name: string
+}
+
+export type User = {
+    id: string
+    name: string
+}
+
 export type SlackConfig = {
     botUserOAuthAccessToken: string,
     defaultChannel: string
 }
 
-export type InteractiveComponentRequest = {}
-export type InteractiveComponentResponse = {}
+export type InteractiveComponentActions = {
+    actions: Action[]
+    callback_id: string
+    team: Team
+    channel: Channel
+    user: User
+    token: string
+    type: string
+    original_message: SlackMessage
+}

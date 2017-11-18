@@ -1,19 +1,23 @@
 import "reflect-metadata";
 import { Container, injectable } from "inversify";
 import expect = require("expect.js");
-import { Intent } from "../scripts/core/intent/Intent";
-import { IIntentDispatcher } from "../scripts/core/dispatcher/IIntentDispatcher";
-import { IntentDispatcher } from "../scripts/core/dispatcher/IntentDispatcher";
-import { IntentTestName } from "./fixtures/IntentTestName";
+import { Intent } from "../../../scripts/core/intent/Intent";
+import { IIntentDispatcher } from "../../../scripts/core/dispatcher/IIntentDispatcher";
+import { IntentDispatcher } from "../../../scripts/core/dispatcher/IntentDispatcher";
+import { IntentTestName } from "../../fixtures/IntentTestName";
+import { IIntentRepository } from "../../../scripts/core/intent/IIntentRepository";
+import { IMock, Mock } from "typemoq";
 
 let container = new Container();
 container.bind<Intent<{}, void>>("IntentTestName").to(IntentTestName).inSingletonScope();
 
 describe("Given a IntentDispacher", () => {
-    let subject: IIntentDispatcher;
+    let subject: IIntentDispatcher,
+        intentRepository: IMock<IIntentRepository>;
 
     beforeEach(() => {
-        subject = new IntentDispatcher(container);
+        intentRepository = Mock.ofType<IIntentRepository>();
+        subject = new IntentDispatcher(container, intentRepository.object);
     });
 
     describe("and i want to process a intent but doesn't exist a manager of it", () => {
@@ -25,7 +29,7 @@ describe("Given a IntentDispacher", () => {
                 error = e;
             }
 
-            expect(error).to.be.eql("Is not registered a Intent with this identifier notRegistered");
+            expect(error).to.be.eql("Cannot find any Intent registered with the identifier 'notRegistered'.");
         });
     });
 

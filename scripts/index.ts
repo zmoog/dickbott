@@ -1,7 +1,8 @@
 export { Intent } from "./core/intent/Intent";
+export { IIntentRepository, IntentInstance } from "./core/intent/IIntentRepository";
 export { IHttpClient } from "./core/http/IHttpClient";
 export { HttpClient } from "./core/http/HttpClient";
-export { SlackMessage, Attachment, Field, SlackConfig, PostMessageRequest, SlackWebAPIResponse, InteractiveComponentRequest, InteractiveComponentResponse } from "./slack/Types";
+export { SlackMessage, Attachment, Field, SlackConfig, PostMessageRequest, SlackWebAPIResponse, InteractiveComponentActions } from "./slack/Types";
 export { ISlackWebAPI } from "./slack/ISlackWebAPI";
 export { SlackWebAPI } from "./slack/SlackWebAPI";
 export { IJenkinsService, JenkinsInfo } from "./jenkins/IJenkinsService";
@@ -22,3 +23,4 @@ export { IModule } from "./modules/IModule";
 export { IIntentDispatcher } from "./core/dispatcher/IIntentDispatcher";
 export { IntentDispatcher } from "./core/dispatcher/IntentDispatcher";
 export { DickBottEngine } from "./core/DickBottEngine";
+export { Config } from "./config/Config";

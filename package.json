@@ -24,16 +24,18 @@
   "homepage": "https://github.com/zmoog/dickbott#readme",
   "dependencies": {
     "inversify": "^4.3.0",
-    "lodash": "^4.17.4",
     "jenkins": "^0.20.0",
+    "lodash": "^4.17.4",
     "request": "^2.81.0",
-    "request-promise-native": "^1.0.4"
+    "request-promise-native": "^1.0.4",
+    "shortid": "^2.2.8"
   },
   "devDependencies": {
     "@types/expect.js": "^0.3.29",
     "@types/lodash": "^4.14.78",
     "@types/mocha": "^2.2.43",
     "@types/node": "^8.0.46",
+    "@types/shortid": "0.0.29",
     "aws-sdk": "^2.138.0",
     "expect.js": "^0.3.1",
     "reflect-metadata": "^0.1.10",

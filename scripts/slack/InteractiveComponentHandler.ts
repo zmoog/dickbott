@@ -1,43 +1,29 @@
-import { SlackMessage, InteractiveComponentRequest, InteractiveComponentResponse } from "./Types";
+import { SlackMessage, InteractiveComponentActions } from "./Types";
 import { IntentDispatcher } from "../core/dispatcher/IntentDispatcher";
 import { inject, injectable } from "inversify";
 import * as _ from "lodash";
+import { IIntentRepository } from "../../dist/core/intent/IIntentRepository";
 
 @injectable()
 export class InteractiveComponentHandler {
-    constructor( @inject("IntentDispatcher") private intentDispatcher: IntentDispatcher) {
-    }
+    constructor( 
+        @inject("IntentDispatcher") private intentDispatcher: IntentDispatcher
+    ) {}
 
-    async handle(event: InteractiveComponentRequest): Promise<InteractiveComponentResponse> {
-
-        // if (!event.result.metadata.intentName) {
-        //     console.log("No intent specified.");
-        //     return {};
-        // }
+    async handle(event: InteractiveComponentActions): Promise<SlackMessage> {
 
         try {
-            let response: SlackMessage | SlackMessage[] = await this.intentDispatcher.dispatch<any, any>(
-                "event.result.metadata.intentName",
-                "event.result.parameters");
-            response = _.isArray(response) ? response : [response];
 
-            let interactiveComponentResponse = {
-                speech: response[0].text,
-                displayText: response[0].text,
-                data: {
-                    slack: response[0]
-                }
-            };
+            let response = await this.intentDispatcher.complete<InteractiveComponentActions, SlackMessage>(event);
 
-            console.log("InteractiveComponent response: %j", interactiveComponentResponse);
+            console.log("InteractiveComponent response: %j", response);
 
-            return interactiveComponentResponse;
+            return response;
 
         } catch (e) {
             console.error(e);
             return {
-                speech: `D'oh! Something went wrong (${e}).`,
-                displayText: `D'oh! Something went wrong (${e}).`
+                text: `D'oh! Something went wrong (${e}).`
             };
         }
     }

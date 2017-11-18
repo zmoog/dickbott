@@ -1,4 +1,4 @@
 export interface Intent<I, O> {
-    execute(entities?: I): Promise<O>;
-    confirm?(entities?: I): Promise<O>;
+    execute(executionId: string, entities?: I): Promise<O>;
+    complete?<A>(actions: A, executionId: string, entities: I): Promise<O>;
 }
