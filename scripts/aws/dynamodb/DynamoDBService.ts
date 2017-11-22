@@ -27,6 +27,10 @@ export class DynamoDBService implements IDynamoDBService {
         return this.dynamoDb.putItem(params).promise();
     };
 
+    async updateItem(params: DynamoDB.Types.UpdateItemInput): Promise<DynamoDB.Types.UpdateItemOutput> {
+        return this.dynamoDb.updateItem(params).promise();
+    };
+
     async getItem(params: DynamoDB.Types.GetItemInput): Promise<DynamoDB.Types.GetItemOutput> {
         return this.dynamoDb.getItem(params).promise();
     };
