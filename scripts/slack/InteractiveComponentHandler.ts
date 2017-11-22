@@ -1,18 +1,24 @@
-import { SlackMessage, InteractiveComponentActions } from "./Types";
+import {SlackMessage, InteractiveComponentActions, SlackConfig} from "./Types";
 import { IntentDispatcher } from "../core/dispatcher/IntentDispatcher";
 import { inject, injectable } from "inversify";
-import * as _ from "lodash";
-import { IIntentRepository } from "../../dist/core/intent/IIntentRepository";
+
 
 @injectable()
 export class InteractiveComponentHandler {
     constructor( 
-        @inject("IntentDispatcher") private intentDispatcher: IntentDispatcher
+        @inject("IntentDispatcher") private intentDispatcher: IntentDispatcher,
+        @inject("SlackConfig") private slackConfig: SlackConfig
     ) {}
 
     async handle(event: InteractiveComponentActions): Promise<SlackMessage> {
 
         try {
+
+            if (event.token !== this.slackConfig.verificationToken) {
+                return {
+                    text: "D'oh! The verification token is not valid, I cannot complete your request.."
+                };
+            }
 
             let response = await this.intentDispatcher.complete<InteractiveComponentActions, SlackMessage>(event);
 

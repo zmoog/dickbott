@@ -1,6 +1,6 @@
 import { injectable, inject } from "inversify";
 import { ISlackWebAPI } from "./ISlackWebAPI";
-import { PostMessageRequest, SlackWebAPIResponse } from "./Types";
+import { PostMessageRequest, SlackConfig, SlackWebAPIResponse } from "./Types";
 import { IHttpClient } from "../core/http/IHttpClient";
 
 
@@ -10,9 +10,9 @@ import { IHttpClient } from "../core/http/IHttpClient";
 @injectable()
 export class SlackWebAPI implements ISlackWebAPI {
 
-    constructor( @inject("SlackConfig") private slackConfig: SlackConfig,
-        @inject("HttpClient") private httpClient: IHttpClient) {
-    }
+    constructor(
+        @inject("SlackConfig") private slackConfig: SlackConfig,
+        @inject("HttpClient") private httpClient: IHttpClient) {}
 
     /**
      *  For the details on this API check https://api.slack.com/methods/chat.postMessage
@@ -28,12 +28,8 @@ export class SlackWebAPI implements ISlackWebAPI {
                 as_user: false
             }
         );
-        if (!response.ok)
+        if (!response.ok) {
             throw new Error(`Error in slack send process: ${response.error}`);
+        }
     }
-}
-
-export interface SlackConfig {
-    botUserOAuthAccessToken: string;
-    defaultChannel: string;
 }
