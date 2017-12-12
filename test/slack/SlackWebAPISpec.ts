@@ -14,6 +14,7 @@ describe("SlackWebAPISpec, given a message to send in a Slack channel", () => {
     beforeEach(() => {
         httpClient = Mock.ofType<IHttpClient>();
         slackConfig = {
+            verificationToken: "verification-token",
             botUserOAuthAccessToken: "slack-bot-user-token",
             defaultChannel: "#mururoa"
         };
