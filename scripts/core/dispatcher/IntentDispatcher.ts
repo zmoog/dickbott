@@ -1,7 +1,7 @@
 import { inject, injectable, interfaces } from "inversify";
 import { IIntentDispatcher } from "./IIntentDispatcher";
 import { Intent } from "../intent/Intent";
-import { IIntentRepository } from "../../../dist/core/intent/IIntentRepository";
+import { IIntentRepository } from "../intent/IIntentRepository";
 import { InteractiveComponentActions } from "../../slack/Types";
 
 @injectable()
