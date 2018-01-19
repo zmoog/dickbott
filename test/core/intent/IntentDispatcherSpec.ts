@@ -9,7 +9,7 @@ import { IIntentRepository } from "../../../scripts/core/intent/IIntentRepositor
 import { IMock, Mock } from "typemoq";
 
 let container = new Container();
-container.bind<Intent<{}, void>>("IntentTestName").to(IntentTestName).inSingletonScope();
+container.bind<Intent<{}, void>>("Intent").to(IntentTestName).whenTargetNamed("IntentTestName");
 
 describe("Given a IntentDispacher", () => {
     let subject: IIntentDispatcher,

@@ -2,17 +2,13 @@ import { FulfillmentRequest, FulfillmentResponse } from "../dialogflow/Types";
 import { SlackMessage } from "../slack/Types";
 import { IntentDispatcher } from "../core/dispatcher/IntentDispatcher";
 import { inject, injectable } from "inversify";
-import * as _ from "lodash";
 import { IIntentRepository } from "../core/intent/IIntentRepository";
+import * as _ from "lodash";
 
 
 @injectable()
 export class FulfillmentHandler {
-    constructor( 
-        @inject("IntentDispatcher") private intentDispatcher: IntentDispatcher
-        // @inject("IntentRepository") private intentRepository: IIntentRepository
-    ) {
-    }
+    constructor( @inject("IntentDispatcher") private intentDispatcher: IntentDispatcher) { }
 
     async handle(event: FulfillmentRequest): Promise<FulfillmentResponse> {
 
@@ -25,16 +21,13 @@ export class FulfillmentHandler {
             let intentName = event.result.metadata.intentName;
             let entities = event.result.parameters;
 
+            entities.originalRequest = event.originalRequest;
+
             let response: SlackMessage | SlackMessage[] = await this.intentDispatcher.dispatch<any, any>(
                 intentName,
                 entities);
 
             response = _.isArray(response) ? response : [response];
-
-            // let intentId = await this.intentRepository.put({
-            //     name: intentName, 
-            //     entities: entities
-            // });
 
             let fulfillmentResponse = {
                 speech: response[0].text,

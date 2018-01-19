@@ -12,18 +12,18 @@ export class IntentDispatcher implements IIntentDispatcher {
         @inject("IntentRepository") private intentRepository: IIntentRepository
     ) { }
 
-    async dispatch<I, O>(intent: string, entities: I): Promise<O> {
+    async dispatch<I, O>(intentName: string, entities: I): Promise<O> {
         
-        if (!this.container.isBound(intent)) {
-            return Promise.reject(`Cannot find any Intent registered with the identifier '${intent}'.`);
+        if (!this.container.isBoundNamed("Intent", intentName)) {
+            return Promise.reject(`Cannot find any Intent registered with the identifier '${intentName}'.`);
         }
         
         let executionId = await this.intentRepository.put({
-            name: intent,
+            name: intentName,
             entities: entities
         });
 
-        let response = this.container.get<Intent<any, any>>(intent).execute(executionId, entities);
+        let response = this.container.getNamed<Intent<any, any>>("Intent", intentName).execute(executionId, entities);
 
         return response;
     }
