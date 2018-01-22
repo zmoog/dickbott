@@ -19,7 +19,8 @@ export class FulfillmentHandler {
 
         try {
             let intentName = event.result.metadata.intentName;
-            let entities = event.result.parameters;
+            
+            let entities = _.assignIn({}, event.result.parameters);
 
             entities.originalRequest = event.originalRequest;
 
@@ -36,12 +37,13 @@ export class FulfillmentHandler {
                     slack: response[0]
                 }
             };
-            console.log("fulfillment response: %j", fulfillmentResponse);
+            // console.log("fulfillment response: %j", fulfillmentResponse);
 
             return fulfillmentResponse;
 
         } catch (e) {
             console.error(e);
+            console.log("FulfillmentHandler: event %j", event);
             return {
                 speech: `D'oh! Something went wrong (${e}).`,
                 displayText: `D'oh! Something went wrong (${e}).`

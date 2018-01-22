@@ -1,5 +1,5 @@
 export interface FulfillmentRequest {
-    originalRequest?: OriginalRequest;
+    originalRequest: OriginalRequest;
     result: Result;
 }
 
