@@ -15,7 +15,8 @@ import { IntentDispatcher } from "../core/dispatcher/IntentDispatcher";
 import { IDynamoDBService } from "../aws/dynamodb/IDynamoDBService";
 import { DynamoDBService } from "../aws/dynamodb/DynamoDBService";
 import { IIntentRepository } from "../core/intent/IIntentRepository";
-import { DynamoDBIntentRepository } from "../aws/dynamodb/DynamoDBIntentRepository";
+// import { DynamoDBIntentRepository } from "../aws/dynamodb/DynamoDBIntentRepository";
+import { InMemoryIntentRepository } from "../core/intent/InMemoryIntentRepository";
 import { Intent } from "../core/intent/Intent";
 import { IntroduceYourselfIntent } from "../intents/IntroduceYourselfIntent";
 
@@ -26,7 +27,7 @@ export class DickBottModule implements IModule {
         // Core
         container.bind<interfaces.Container>("Container").toConstantValue(container);
         container.bind<IIntentDispatcher>("IntentDispatcher").to(IntentDispatcher).inSingletonScope();
-        container.bind<IIntentRepository>("IntentRepository").to(DynamoDBIntentRepository).inSingletonScope();
+        container.bind<IIntentRepository>("IntentRepository").to(InMemoryIntentRepository).inSingletonScope();
         container.bind<IHttpClient>("HttpClient").to(HttpClient).inSingletonScope();
         container.bind<ISlackWebAPI>("ISlackWebAPI").to(SlackWebAPI).inSingletonScope();
 

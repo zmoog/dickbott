@@ -2,14 +2,15 @@ import "reflect-metadata";
 import { IMock, Mock, Times, It } from "typemoq";
 import expect = require("expect.js");
 import { IIntentRepository } from "../../../scripts/core/intent/IIntentRepository";
+import { InMemoryIntentRepository } from "../../../scripts/core/intent/InMemoryIntentRepository";
 
 
-describe.skip("Given an IntentRepository", () => {
+describe("Given an IntentRepository", () => {
 
     let repository: IIntentRepository;
 
     beforeEach(() => {
-        // repository = new InMemoryIntentRepository();
+        repository = new InMemoryIntentRepository();
     });
 
     context("when the intent is created from a user input and stored in the repository", () => {
@@ -27,7 +28,7 @@ describe.skip("Given an IntentRepository", () => {
                     entities: intentEntities
                 }
             );
-            // console.log(`id: ${id}`);
+            console.log(`id: ${id}`);
 
             expect(id).to.match(/TestIntent-\w{7,14}/);
         });
