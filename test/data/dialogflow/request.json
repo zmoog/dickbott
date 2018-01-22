@@ -1,0 +1,58 @@
+{
+    "originalRequest": {
+        "source": "slack",
+        "data": {
+            "authed_users": [
+                "<ID>"
+            ],
+            "event_id": "xx",
+            "api_app_id": "<ID>",
+            "team_id": "<ID>",
+            "event": {
+                "event_ts": "1516598614.000022",
+                "channel": "<ID>",
+                "text": "introduce yourself",
+                "type": "message",
+                "user": "<ID>",
+                "ts": "1516598614.000022"
+            },
+            "type": "event_callback",
+            "event_time": 1516598614,
+            "token": "<ID>"
+        }
+    },
+    "id": "<UUID>",
+    "timestamp": "2018-01-22T05:23:34.426Z",
+    "lang": "en",
+    "result": {
+        "source": "agent",
+        "resolvedQuery": "introduce yourself",
+        "speech": "",
+        "action": "",
+        "actionIncomplete": false,
+        "parameters": {},
+        "contexts": [],
+        "metadata": {
+            "intentId": "<UUID>",
+            "webhookUsed": "true",
+            "webhookForSlotFillingUsed": "false",
+            "intentName": "IntroduceYourselfIntent"
+        },
+        "fulfillment": {
+            "speech": "Oooops, something has gone wrong, sorry buddy...",
+            "messages": [
+                {
+                    "type": 0,
+                    "speech": "Oooops, something has gone wrong, sorry buddy..."
+                }
+            ]
+        },
+        "score": 1
+    },
+    "status": {
+        "code": 200,
+        "errorType": "success",
+        "webhookTimedOut": false
+    },
+    "sessionId": "<UUID>"
+}

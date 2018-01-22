@@ -16,18 +16,27 @@ import { IDynamoDBService } from "../aws/dynamodb/IDynamoDBService";
 import { DynamoDBService } from "../aws/dynamodb/DynamoDBService";
 import { IIntentRepository } from "../core/intent/IIntentRepository";
 import { DynamoDBIntentRepository } from "../aws/dynamodb/DynamoDBIntentRepository";
+import { Intent } from "../core/intent/Intent";
+import { IntroduceYourselfIntent } from "../intents/IntroduceYourselfIntent";
 
 
 export class DickBottModule implements IModule {
     modules = (container: interfaces.Container) => {
+
+        // Core
         container.bind<interfaces.Container>("Container").toConstantValue(container);
+        container.bind<IIntentDispatcher>("IntentDispatcher").to(IntentDispatcher).inSingletonScope();
+        container.bind<IIntentRepository>("IntentRepository").to(DynamoDBIntentRepository).inSingletonScope();
         container.bind<IHttpClient>("HttpClient").to(HttpClient).inSingletonScope();
         container.bind<ISlackWebAPI>("ISlackWebAPI").to(SlackWebAPI).inSingletonScope();
+
+        // Services
         container.bind<IEC2Service>("EC2Service").to(EC2Service).inSingletonScope();
         container.bind<IAutoScalingService>("AutoScalingService").to(AutoScalingService).inSingletonScope();
-        container.bind<IIntentDispatcher>("IntentDispatcher").to(IntentDispatcher).inSingletonScope();
         container.bind<IJenkinsService>("JenkinsService").to(JenkinsService).inSingletonScope();
         container.bind<IDynamoDBService>("DynamoDBService").to(DynamoDBService).inSingletonScope();
-        container.bind<IIntentRepository>("IntentRepository").to(DynamoDBIntentRepository).inSingletonScope();
+
+        // Intents
+        container.bind<Intent<any, any>>("Intent").to(IntroduceYourselfIntent).whenTargetNamed("IntroduceYourselfIntent");
     }
 }

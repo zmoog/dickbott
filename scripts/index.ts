@@ -16,7 +16,7 @@ export { IApiGatewayService } from "./aws/apigateway/IApiGatewayService";
 export { ApiGatewayService } from "./aws/apigateway/ApiGatewayService";
 export { IAutoScalingService } from "./aws/autoscaling/IAutoScalingService";
 export { AutoScalingService } from "./aws/autoscaling/AutoScalingService";
-export { FulfillmentRequest, FulfillmentResponse, Metadata, Result } from "./dialogflow/Types";
+export { FulfillmentRequest, FulfillmentResponse, Metadata, Result, OriginalRequest, Provider, EventType } from "./dialogflow/Types";
 export { FulfillmentHandler } from "./dialogflow/FulfillmentHandler";
 export { InteractiveComponentHandler } from "./slack/InteractiveComponentHandler";
 export { IModule } from "./modules/IModule";
