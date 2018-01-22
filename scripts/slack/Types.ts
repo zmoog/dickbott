@@ -65,7 +65,59 @@ export type Confirm = {
     dismiss_text: string
 }
 
+export type Team = {
+    id: string
+    domain: string
+}
+
+export type Channel = {
+    id: string
+    name: string
+}
+
+export type User = {
+    id: string
+    name: string
+}
+
+/**
+ * Most of the settings come from the Slack App configuration page. See https://api.slack.com/ for more details.
+ */
 export type SlackConfig = {
+
+    /**
+     * Settings > Basic information > App Credentials
+     *
+     * These tokens were automatically generated when you installed the app to your team. You can use these to
+     * authenticate your app.
+     *
+     * To learn more see https://api.slack.com/docs/oauth.
+     *
+     */
     botUserOAuthAccessToken: string,
+
+    /**
+     * Features > OAuth & Permissions > OAuth Tokens & Redirect URLs > Tokens for Your Workspace
+     *
+     * For interactive messages and events, use this token to verify that requests are actually coming from Slack.
+     * Slash commands and interactive messages will both use this verification token.
+     *
+     */
+    verificationToken: string,
+
+    /**
+     * The Slack Web API will send the messages to this channel when no channel is specified.
+     */
     defaultChannel: string
+}
+
+export type InteractiveComponentActions = {
+    actions: Action[]
+    callback_id: string
+    team: Team
+    channel: Channel
+    user: User
+    token: string
+    type: string
+    original_message: SlackMessage
 }

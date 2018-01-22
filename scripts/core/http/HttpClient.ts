@@ -1,5 +1,5 @@
-import {injectable} from "inversify";
-import {IHttpClient} from "./IHttpClient";
+import { injectable } from "inversify";
+import { IHttpClient } from "./IHttpClient";
 
 @injectable()
 export class HttpClient implements IHttpClient {

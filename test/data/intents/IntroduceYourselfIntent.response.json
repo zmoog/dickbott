@@ -1,0 +1,29 @@
+{
+  "text": "I am a chatbot designed to help you with your infrastructure duties.\n\nThis is the list of what I'm capable of doing today for you.",
+  "attachments": [
+    {
+      "title_link": "https://bitbucket.tierratelematics.com",
+      "color": "#d2dde1",
+      "text": "I will introduce myself describing what I am, what is my value proposition is and what I'm capable of doing right now.",
+      "mrkdwn_in": [
+        "text",
+        "pretext",
+        "fields"
+      ],
+      "attachment_type": "default",
+      "title": "Introduce Yourself",
+      "fields": [
+        {
+          "title": "Simple",
+          "value": "\"Introduce yourself\"",
+          "short": true
+        },
+        {
+          "title": "Elegant",
+          "value": "\"Please, can you introduce yourself?\"",
+          "short": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+    "container": {
+        "options": {
+            "autoBindInjectable": false,
+            "defaultScope": "Transient"
+        },
+        "guid": "8836c89e-5303-f5f0-9e70-fa18142eb685",
+        "_bindingDictionary": {
+            "_map": {}
+        },
+        "_snapshots": [],
+        "_middleware": null,
+        "parent": null,
+        "_metadataReader": {}
+    },
+    "name": "Introduce Yourself Intent",
+    "examples": {
+        "short": "Introduce yourself",
+        "extended": "Please, can you introduce yourself?"
+    }
+}
+]
