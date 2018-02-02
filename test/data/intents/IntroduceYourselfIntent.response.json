@@ -2,25 +2,49 @@
   "text": "I am a chatbot designed to help you with your infrastructure duties.\n\nThis is the list of what I'm capable of doing today for you.",
   "attachments": [
     {
-      "title_link": "https://bitbucket.tierratelematics.com",
+      "title_link": "https://wikipedia.org",
       "color": "#d2dde1",
-      "text": "I will introduce myself describing what I am, what is my value proposition is and what I'm capable of doing right now.",
+      "text": "Just a simple test intent",
       "mrkdwn_in": [
         "text",
         "pretext",
         "fields"
       ],
       "attachment_type": "default",
-      "title": "Introduce Yourself",
+      "title": "Test 1 Intent",
       "fields": [
         {
           "title": "Simple",
-          "value": "\"Introduce yourself\"",
+          "value": "\"Simple example\"",
           "short": true
         },
         {
           "title": "Elegant",
-          "value": "\"Please, can you introduce yourself?\"",
+          "value": "\"Much more elegant example\"",
+          "short": true
+        }
+      ]
+    },
+    {
+      "title_link": "https://wikipedia.org",
+      "color": "#d2dde1",
+      "text": "Just a simple test intent",
+      "mrkdwn_in": [
+        "text",
+        "pretext",
+        "fields"
+      ],
+      "attachment_type": "default",
+      "title": "Test 2 Intent",
+      "fields": [
+        {
+          "title": "Simple",
+          "value": "\"Simple example\"",
+          "short": true
+        },
+        {
+          "title": "Elegant",
+          "value": "\"Much more elegant example\"",
           "short": true
         }
       ]

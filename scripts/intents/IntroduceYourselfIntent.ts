@@ -9,6 +9,7 @@ import * as _ from "lodash";
 export class IntroduceYourselfIntent implements Intent<IntroduceYourselfEntities, SlackMessage> {
 
     name = "Introduce Yourself";
+    description = "I will introduce myself describing what I am, what is my value proposition is and what I'm capable of doing right now."
     examples = {
         Simple: "Introduce yourself",
         Elegant: "Please, can you introduce yourself?"
@@ -20,14 +21,14 @@ export class IntroduceYourselfIntent implements Intent<IntroduceYourselfEntities
 
     async execute(executionId: string, entities: IntroduceYourselfEntities): Promise<SlackMessage> {
 
-        let intents: Intent<any, any>[] = this.container.getAll("Intent");
+        let intents = this.container.getAll<Intent<any, any>>("Intent");
 
         let attachments = _(intents)
             .map(intent => ({
                 attachment_type: "default",
                 title: intent.name,
                 title_link: intent.docs_url,
-                text: "I will introduce myself describing what I am, what is my value proposition is and what I'm capable of doing right now.",
+                text: intent.description,
                 fields: _(intent.examples).map((value, key) => ({
                     short: true,
                     title: key,
