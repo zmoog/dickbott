@@ -6,7 +6,7 @@ export interface Intent<I, O> {
         Simple?: string
         Elegant?: string
     };
-    docs_url?: string; 
+    docs_url?: string;
 
     execute(executionId: string, entities?: I): Promise<O>;
     complete?<A>(actions: A, executionId: string, entities: I): Promise<O>;
