@@ -4,14 +4,23 @@ FEATURES:
 
 ENHANCEMENTS:
 
+* provider/slack: **BREAKING CHANGE** changing the service identifier for SlackWebAPI from `ISlackWebAPI` to `SlackWebAPI`. This was the last one with the `I` prefix.
+
 BUG FIXES:
 
 
-## 0.4.0 (January 22, 2018)
+## 0.4.1 (February 2nd, 2018)
+
+BUG FIXES:
+
+* core/intent: Fix wrong attribute `description` in  `IntroduceYourself` intent.
+
+
+## 0.4.0 (January 22nd, 2018)
 
 FEATURES:
 
-* core/intent: Add introspection capabilities to discover the intents available. This is a BREAKING CHANGE becouse we use a different method to regiter the intents with Inversify.
+* core/intent: Add introspection capabilities to discover the intents available. This is a **BREAKING CHANGE** becouse we use a different method to regiter the intents with Inversify.
 
 ENHANCEMENTS:
 
