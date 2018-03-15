@@ -40,7 +40,9 @@ export type Attachment = {
     fields?: Field[],
     actions?: Action[],
     footer?: string,
-    ts?: number
+    ts?: number,
+    mrkdwn_in?: string[],
+    image_url?: string
 };
 
 export type Field = {

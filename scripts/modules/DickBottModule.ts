@@ -18,10 +18,14 @@ import { IIntentRepository } from "../core/intent/IIntentRepository";
 import { InMemoryIntentRepository } from "../core/intent/InMemoryIntentRepository";
 import { IntroduceYourselfIntent } from "../intents/IntroduceYourselfIntent";
 import { Intent } from "../core/intent/Intent";
+import { EC2 } from "aws-sdk";
 
 
 export class DickBottModule implements IModule {
     modules = (container: interfaces.Container) => {
+
+        // Config
+        container.bind<EC2.Types.ClientConfiguration>("EC2.Types.ClientConfiguration").toConstantValue({});
 
         // Core
         container.bind<interfaces.Container>("Container").toConstantValue(container);

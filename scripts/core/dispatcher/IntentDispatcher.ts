@@ -39,12 +39,14 @@ export class IntentDispatcher implements IIntentDispatcher {
             return Promise.reject(`Cannot find any Intent execution data with id ${executionId}.`);
         }
 
-        if (!this.container.isBound(intentExecution.name)) {
-            console.log("looking for intent: %j", intentExecution.name);
+        console.log("intentExecution: %j", intentExecution);
+
+        if (!this.container.isBoundNamed("Intent", intentExecution.name)) {
             return Promise.reject(`Cannot find any Intent registered with the identifier ${intentExecution.name}.`);
         }
 
-        let intent = this.container.get<Intent<any, any>>(intentExecution.name);
+        // let intent = this.container.get<Intent<any, any>>(intentExecution.name);
+        let intent = this.container.getNamed<Intent<any, any>>("Intent", intentExecution.name);
         console.log("confirming intent: %j", intent);
 
         return intent.complete(actions, executionId, intentExecution.entities);

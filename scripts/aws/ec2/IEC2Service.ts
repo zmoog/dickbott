@@ -7,4 +7,6 @@ export interface IEC2Service {
     startInstances(params: EC2.Types.StartInstancesRequest): Promise<EC2.Types.StartInstancesResult>;
     describeVpnConnections(params?: EC2.Types.DescribeVpnConnectionsRequest): Promise<EC2.Types.DescribeVpnConnectionsResult>;
     describeImages(params: EC2.Types.DescribeImagesRequest): Promise<EC2.Types.DescribeImagesResult>;
+    copyImage(params: EC2.Types.CopyImageRequest): Promise<EC2.Types.CopyImageResult>;
+    createTags(params: EC2.Types.CreateTagsRequest): Promise<{}>;
 }
