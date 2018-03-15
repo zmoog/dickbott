@@ -1,5 +1,7 @@
 export { Intent } from "./core/intent/Intent";
 export { IIntentRepository, IntentInstance } from "./core/intent/IIntentRepository";
+export { InMemoryIntentRepository } from "./core/intent/InMemoryIntentRepository";
+export { DynamoDBIntentRepository } from "./aws/dynamodb/DynamoDBIntentRepository";
 export { IHttpClient } from "./core/http/IHttpClient";
 export { HttpClient } from "./core/http/HttpClient";
 export { SlackMessage, Attachment, Field, SlackConfig, PostMessageRequest, SlackWebAPIResponse, InteractiveComponentActions } from "./slack/Types";

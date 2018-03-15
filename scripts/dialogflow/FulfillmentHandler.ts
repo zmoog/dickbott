@@ -18,35 +18,32 @@ export class FulfillmentHandler {
         }
 
         try {
-            let intentName = event.result.metadata.intentName;
             
+            let intentName = event.result.metadata.intentName;
             let entities = _.assignIn({}, event.result.parameters);
 
             entities.originalRequest = event.originalRequest;
 
-            let response: SlackMessage | SlackMessage[] = await this.intentDispatcher.dispatch<any, any>(
+            let slackMessage = await this.intentDispatcher.dispatch<any, any>(
                 intentName,
                 entities);
 
-            response = _.isArray(response) ? response : [response];
-
             let fulfillmentResponse = {
-                speech: response[0].text,
-                displayText: response[0].text,
+                speech: slackMessage.text,
+                displayText: slackMessage.text,
                 data: {
-                    slack: response[0]
+                    slack: slackMessage
                 }
             };
-            // console.log("fulfillment response: %j", fulfillmentResponse);
 
             return fulfillmentResponse;
 
-        } catch (e) {
-            console.error(e);
+        } catch (error) {
+            console.error(error);
             console.log("FulfillmentHandler: event %j", event);
             return {
-                speech: `D'oh! Something went wrong (${e}).`,
-                displayText: `D'oh! Something went wrong (${e}).`
+                speech: `D'oh! Something went wrong (${error}).`,
+                displayText: `D'oh! Something went wrong (${error}).`
             };
         }
     }

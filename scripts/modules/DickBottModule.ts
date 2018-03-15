@@ -15,27 +15,30 @@ import { IntentDispatcher } from "../core/dispatcher/IntentDispatcher";
 import { IDynamoDBService } from "../aws/dynamodb/IDynamoDBService";
 import { DynamoDBService } from "../aws/dynamodb/DynamoDBService";
 import { IIntentRepository } from "../core/intent/IIntentRepository";
-// import { DynamoDBIntentRepository } from "../aws/dynamodb/DynamoDBIntentRepository";
 import { InMemoryIntentRepository } from "../core/intent/InMemoryIntentRepository";
-import { Intent } from "../core/intent/Intent";
 import { IntroduceYourselfIntent } from "../intents/IntroduceYourselfIntent";
+import { Intent } from "../core/intent/Intent";
+import { EC2 } from "aws-sdk";
 
 
 export class DickBottModule implements IModule {
     modules = (container: interfaces.Container) => {
+
+        // Config
+        container.bind<EC2.Types.ClientConfiguration>("EC2.Types.ClientConfiguration").toConstantValue({});
 
         // Core
         container.bind<interfaces.Container>("Container").toConstantValue(container);
         container.bind<IIntentDispatcher>("IntentDispatcher").to(IntentDispatcher).inSingletonScope();
         container.bind<IIntentRepository>("IntentRepository").to(InMemoryIntentRepository).inSingletonScope();
         container.bind<IHttpClient>("HttpClient").to(HttpClient).inSingletonScope();
-        container.bind<ISlackWebAPI>("ISlackWebAPI").to(SlackWebAPI).inSingletonScope();
+        container.bind<ISlackWebAPI>("SlackWebAPI").to(SlackWebAPI).inSingletonScope();
 
         // Services
         container.bind<IEC2Service>("EC2Service").to(EC2Service).inSingletonScope();
         container.bind<IAutoScalingService>("AutoScalingService").to(AutoScalingService).inSingletonScope();
-        container.bind<IJenkinsService>("JenkinsService").to(JenkinsService).inSingletonScope();
         container.bind<IDynamoDBService>("DynamoDBService").to(DynamoDBService).inSingletonScope();
+        container.bind<IJenkinsService>("JenkinsService").to(JenkinsService).inSingletonScope();
 
         // Intents
         container.bind<Intent<any, any>>("Intent").to(IntroduceYourselfIntent).whenTargetNamed("IntroduceYourselfIntent");
