@@ -62,4 +62,5 @@ typings/
 
 # smild
 dist
+.vscode
 
