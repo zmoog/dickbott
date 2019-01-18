@@ -1,12 +1,9 @@
 language: node_js
 node_js:
-- '6'
-install:
-- npm install smild@4.9.1 -g
-- npm install
+- '10'
 script:
-- smild test
-- smild build
+- npm test
+- npm run build 
 deploy:
   skip_cleanup: true
   provider: npm

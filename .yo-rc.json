@@ -1,0 +1,11 @@
+{
+  "generator-smild": {
+    "promptValues": {
+      "projectType": "lib",
+      "files": "scripts/**/*",
+      "out": "dist",
+      "testRunner": "mocha",
+      "testFiles": "test/**/*.ts"
+    }
+  }
+}
