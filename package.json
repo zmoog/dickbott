@@ -34,7 +34,8 @@
     "lodash": "^4.17.4",
     "request": "^2.81.0",
     "request-promise-native": "^1.0.4",
-    "shortid": "^2.2.8"
+    "shortid": "^2.2.8",
+    "aws-sdk": "^2.390.0"
   },
   "devDependencies": {
     "@types/expect.js": "^0.3.29",
@@ -42,7 +43,6 @@
     "@types/mocha": "^5.2.5",
     "@types/node": "^8.0.46",
     "@types/shortid": "0.0.29",
-    "aws-sdk": "^2.138.0",
     "expect.js": "^0.3.1",
     "mocha": "^5.2.0",
     "reflect-metadata": "^0.1.10",
