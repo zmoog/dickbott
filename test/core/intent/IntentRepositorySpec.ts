@@ -30,7 +30,7 @@ describe("Given an IntentRepository", () => {
             );
             console.log(`id: ${id}`);
 
-            expect(id).to.match(/TestIntent-\w{7,14}/);
+            expect(id).to.match(/TestIntent-[a-zA-Z0-9_-]{7,14}/);
         });
 
         it("should return a previously stored intent using the generated ID", async () => {
