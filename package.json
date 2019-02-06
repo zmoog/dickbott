@@ -6,7 +6,13 @@
     "test": "test"
   },
   "scripts": {
-    "test": "smild test"
+    "test": "mocha -r ts-node/register \"test/**/*.ts\"",
+    "link": "yalc add",
+    "rm-link": "yalc remove",
+    "push": "yalc push",
+    "start": "tsc -w",
+    "build": "tsc",
+    "test-watch": "mocha -r ts-node/register --watch --watch-extensions ts,tsx \"test/**/*.ts\""
   },
   "repository": {
     "type": "git",
@@ -28,20 +34,22 @@
     "lodash": "^4.17.4",
     "request": "^2.81.0",
     "request-promise-native": "^1.0.4",
-    "shortid": "^2.2.8"
+    "shortid": "^2.2.8",
+    "aws-sdk": "^2.390.0"
   },
   "devDependencies": {
     "@types/expect.js": "^0.3.29",
     "@types/lodash": "^4.14.78",
-    "@types/mocha": "^2.2.43",
+    "@types/mocha": "^5.2.5",
     "@types/node": "^8.0.46",
     "@types/shortid": "0.0.29",
-    "aws-sdk": "^2.138.0",
     "expect.js": "^0.3.1",
+    "mocha": "^5.2.0",
     "reflect-metadata": "^0.1.10",
-    "smild": "^4.10.4",
+    "ts-node": "^7.0.1",
     "typemoq": "^2.0.1",
-    "typescript": "^2.5.3"
+    "typescript": "^2.5.3",
+    "yalc": "^1.0.0-pre.24"
   },
   "main": "dist",
   "typings": "dist"

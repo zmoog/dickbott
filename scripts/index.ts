@@ -26,3 +26,5 @@ export { IIntentDispatcher } from "./core/dispatcher/IIntentDispatcher";
 export { IntentDispatcher } from "./core/dispatcher/IntentDispatcher";
 export { DickBottEngine } from "./core/DickBottEngine";
 export { Config } from "./config/Config";
+export { IRDSService } from "./aws/rds/IRDSService";
+export { DBInstanceWithTags } from "./aws/rds/IRDSService";

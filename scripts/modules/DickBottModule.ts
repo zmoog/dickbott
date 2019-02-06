@@ -18,7 +18,9 @@ import { IIntentRepository } from "../core/intent/IIntentRepository";
 import { InMemoryIntentRepository } from "../core/intent/InMemoryIntentRepository";
 import { IntroduceYourselfIntent } from "../intents/IntroduceYourselfIntent";
 import { Intent } from "../core/intent/Intent";
-import { EC2 } from "aws-sdk";
+import { EC2, RDS } from "aws-sdk";
+import { IRDSService } from "../aws/rds/IRDSService";
+import { RDSService } from "../aws/rds/RDSService";
 
 
 export class DickBottModule implements IModule {
@@ -26,6 +28,7 @@ export class DickBottModule implements IModule {
 
         // Config
         container.bind<EC2.Types.ClientConfiguration>("EC2.Types.ClientConfiguration").toConstantValue({});
+        container.bind<RDS.Types.ClientConfiguration>("RDS.Types.ClientConfiguration").toConstantValue({});
 
         // Core
         container.bind<interfaces.Container>("Container").toConstantValue(container);
@@ -36,6 +39,7 @@ export class DickBottModule implements IModule {
 
         // Services
         container.bind<IEC2Service>("EC2Service").to(EC2Service).inSingletonScope();
+        container.bind<IRDSService>("RDSService").to(RDSService).inSingletonScope();
         container.bind<IAutoScalingService>("AutoScalingService").to(AutoScalingService).inSingletonScope();
         container.bind<IDynamoDBService>("DynamoDBService").to(DynamoDBService).inSingletonScope();
         container.bind<IJenkinsService>("JenkinsService").to(JenkinsService).inSingletonScope();
