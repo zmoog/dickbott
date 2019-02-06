@@ -29,6 +29,10 @@ export class EC2Service implements IEC2Service {
         return this.ec2.startInstances(params).promise();
     }
 
+    terminateIstances(params: EC2.Types.TerminateInstancesRequest): Promise<EC2.Types.TerminateInstancesResult> {
+        return this.ec2.terminateInstances(params).promise();
+    }
+
     describeVpnConnections(params: EC2.Types.DescribeVpnConnectionsRequest): Promise<EC2.Types.DescribeVpnConnectionsResult> {
         return this.ec2.describeVpnConnections(params).promise();
     }
