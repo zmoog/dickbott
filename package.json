@@ -1,6 +1,6 @@
 {
   "name": "dickbott",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "A Framework for building bots for ChatOps",
   "directories": {
     "test": "test"
@@ -29,13 +29,14 @@
   },
   "homepage": "https://github.com/zmoog/dickbott#readme",
   "dependencies": {
-    "inversify": "^4.3.0",
+    "aws-sdk": "^2.390.0",
+    "inversify": "^5.0.1",
     "jenkins": "^0.20.0",
     "lodash": "^4.17.4",
+    "reflect-metadata": "^0.1.13",
     "request": "^2.81.0",
     "request-promise-native": "^1.0.4",
-    "shortid": "^2.2.8",
-    "aws-sdk": "^2.390.0"
+    "shortid": "^2.2.8"
   },
   "devDependencies": {
     "@types/expect.js": "^0.3.29",
@@ -45,7 +46,6 @@
     "@types/shortid": "0.0.29",
     "expect.js": "^0.3.1",
     "mocha": "^5.2.0",
-    "reflect-metadata": "^0.1.10",
     "ts-node": "^7.0.1",
     "typemoq": "^2.0.1",
     "typescript": "^2.5.3",
