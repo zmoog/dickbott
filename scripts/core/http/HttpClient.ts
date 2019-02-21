@@ -13,10 +13,11 @@ export class HttpClient implements IHttpClient {
         })).body;
     }
 
-    async post<I, O>(uri: string, body: I): Promise<O> {
+    async post<I, O>(uri: string, body: I, parseJson = true): Promise<O> {
         console.log("POST request: %j", body);
         let response: O = await this.rp.post(uri, {
-            form: body
+            form: body,
+            json: parseJson 
         });
 
         console.log("POST response: %j", response);
