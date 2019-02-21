@@ -24,10 +24,11 @@ export class SlackWebAPI implements ISlackWebAPI {
                 token: this.slackConfig.botUserOAuthAccessToken,
                 channel: message.channel || this.slackConfig.defaultChannel,
                 text: message.text,
-                attachments: JSON.stringify(message.attachments),
+                attachments: JSON.stringify(message.attachments || []),
                 as_user: false
             }
         );
+
         if (!response.ok) {
             throw new Error(`Error in slack send process: ${response.error}`);
         }
