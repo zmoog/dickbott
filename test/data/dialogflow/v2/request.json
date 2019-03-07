@@ -1,0 +1,48 @@
+{
+	"responseId": "11d6954f-5bb4-473c-94d9-2dc679fd7fe7",
+	"queryResult": {
+		"queryText": "toggl summary?",
+		"action": "toggl.summary",
+		"parameters": {
+			"date": ""
+		},
+		"allRequiredParamsPresent": true,
+		"fulfillmentMessages": [{
+			"text": {
+				"text": [""]
+			}
+		}],
+		"intent": {
+			"name": "projects/calculon-49bb2/agent/intents/424f675f-51db-44e3-858a-1e1a0537f26e",
+			"displayName": "SummaryIntent"
+		},
+		"intentDetectionConfidence": 1.0,
+		"languageCode": "en"
+	},
+	"originalDetectIntentRequest": {
+		"source": "slack",
+		"payload": {
+			"data": {
+				"authed_users": ["UGES23TFE"],
+				"event_id": "EvGF1FDBGS",
+				"api_app_id": "AGF7EQ9QV",
+				"team_id": "T02RX18RT",
+				"event": {
+					"client_msg_id": "62bbfab1-81db-4ae3-9d25-c5a9327451a4",
+					"event_ts": "1550937095.004400",
+					"channel": "DGES23TV2",
+					"text": "toggl summary?",
+					"type": "message",
+					"channel_type": "im",
+					"user": "U02RX18RV",
+					"ts": "1550937095.004400"
+				},
+				"type": "event_callback",
+				"event_time": 1.550937095E9,
+				"token": "JH2c9DQXqzL1L30egcgoQODR"
+			},
+			"source": "slack"
+		}
+	},
+	"session": "projects/calculon-49bb2/agent/sessions/290eb798-e0ad-4712-bdc0-0ef8be3e846a"
+}

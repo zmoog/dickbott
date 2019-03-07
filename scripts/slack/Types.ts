@@ -11,7 +11,15 @@ export interface PostMessageRequest extends SlackMessage {
      * A JSON-based array of structured attachments, presented as a URL-encoded string.
      */
     attachments?: Attachment[];
+    
+    /**
+     * A JSON-based array of structured blocks, presented as a URL-encoded string.
+     */
+    blocks?: Block[];
 
+    /**
+     * Pass true to post the message as the authed user, instead of as a bot. Defaults to false. See authorship below.
+     */
     as_user?: boolean;
 }
 
@@ -43,6 +51,20 @@ export type Attachment = {
     ts?: number,
     mrkdwn_in?: string[],
     image_url?: string
+};
+
+export type Block = {
+    type: string,
+    text?: {
+        type: string,
+        text: string
+    },
+    fields?: [
+        {
+            type: string,
+            text: string
+        }
+    ]
 };
 
 export type Field = {
