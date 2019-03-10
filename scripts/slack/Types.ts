@@ -3,19 +3,6 @@ export interface PostMessageRequest extends SlackMessage {
      * You can either pass the channel's name (#mururoa) or encoded ID (C024BE91L), and the message will be posted to that channel.
      */
     channel?: string;
-    /**
-     * Text of the message to send. This field is usually required, unless you're providing only attachments instead.
-     */
-    text?: string;
-    /**
-     * A JSON-based array of structured attachments, presented as a URL-encoded string.
-     */
-    attachments?: Attachment[];
-    
-    /**
-     * A JSON-based array of structured blocks, presented as a URL-encoded string.
-     */
-    blocks?: Block[];
 
     /**
      * Pass true to post the message as the authed user, instead of as a bot. Defaults to false. See authorship below.
@@ -33,8 +20,19 @@ export interface SlackWebAPIResponse {
 }
 
 export interface SlackMessage {
+    /**
+     * Text of the message to send. This field is usually required, unless you're providing only attachments instead.
+     */
     text?: string;
+    /**
+     * A JSON-based array of structured attachments, presented as a URL-encoded string.
+     */
     attachments?: Attachment[];
+    
+    /**
+     * A JSON-based array of structured blocks, presented as a URL-encoded string.
+     */
+    blocks?: Block[];
 }
 
 export type Attachment = {
