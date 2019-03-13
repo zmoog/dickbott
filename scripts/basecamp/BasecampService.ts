@@ -1,5 +1,7 @@
 import { inject, injectable } from "inversify";
-import { IHttpClient } from "../core/http/IHttpClient";
+import { IBasecampService } from "./IBasecampService";
+import { IHttpClient } from "../core/http/v2/IHttpClient";
+import { IncomingMessage } from "http";
 
 
 /**
@@ -8,25 +10,34 @@ import { IHttpClient } from "../core/http/IHttpClient";
  *
  */
 @injectable()
-export class BasecampService {
+export class BasecampService implements IBasecampService {
 
     constructor(
         @inject("BasecampConfig") private basecampConfig: BasecampConfig,
-        @inject("HttpClient") private httpClient: IHttpClient) { }
+        @inject("HttpClient") private httpClient: IHttpClient
+    ) { }
 
-    async postMessage(campfire: string): Promise<void> {
+    async postMessage(message: string): Promise<void> {
+
+        console.log(`message: ${JSON.stringify(message)}`);
+
+        //
+        // https://nodejs.org/api/http.html#http_class_http_incomingmessage
+        //
+        let response = await this.httpClient.process<string, IncomingMessage>({
+            method: "POST",
+            uri: this.basecampConfig.campfireUrl,
+            form: {
+                content: message
+            },
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            resolveWithFullResponse: false
+        });
     }
-
-    // build(job: Job): Promise<number> {
-    //     console.log("launching job %j", job);
-    //     return this.jenkins.job.build(job);
-    //     // console.log("Job launch disabled");
-    //     // return Promise.resolve(0);
-    // }
-
-    // info(): Promise<JenkinsInfo> {
-    //     return this.jenkins.info();
-    // }
 }
 
-export type BasecampConfig = {}
+export type BasecampConfig = {
+    campfireUrl: string
+}
