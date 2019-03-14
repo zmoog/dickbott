@@ -3,22 +3,29 @@ import { interfaces } from "inversify";
 import { IModule } from "../modules/IModule";
 import { DickBottModule } from "../modules/DickBottModule";
 import { Intent } from "./intent/Intent";
-import { IntentMetadataExtractor } from "./intent/IntentDecorator";
+import { IIntentRegistry } from "./intent/IIntentRegistry";
 
 
 export class DickBottEngine {
     private modules: IModule[] = [];
-    private container: interfaces.Container;
+    private intentRegistry: IIntentRegistry;
 
-    constructor(container: interfaces.Container = DefaultContainer) {
-        this.container = container;
+    constructor(
+        private container: interfaces.Container = DefaultContainer,
+        registryRetriever: (container?: interfaces.Container) => IIntentRegistry = defaultRegistryRetriever
+    ){
         this.registerModule(new DickBottModule());
+        this.intentRegistry = registryRetriever(this.container);
     }
 
     registerModule(module: IModule): boolean {
         if (module.modules) {
             module.modules(this.container);
         }
+        if(module.register) {
+            module.register(this.intentRegistry);
+        }
+
         this.modules.push(module);
         return true;
     }
@@ -27,8 +34,12 @@ export class DickBottEngine {
         return this.container.get<T>(serviceIdentifier);
     }
 
-    registerIntent<T = Intent<any, any>>(intent: interfaces.Newable<T>): DickBottEngine {
-        this.container.bind<T>("Intent").to(intent).inSingletonScope().whenTargetNamed(IntentMetadataExtractor.extract(intent).name);
+    registerIntent(intent: interfaces.Newable<Intent>): DickBottEngine {
+        this.intentRegistry.add(intent);
         return this;
     }
-}
+};
+
+export function defaultRegistryRetriever(container: interfaces.Container){
+    return container.get<IIntentRegistry>("IIntentRegistry");
+} 
