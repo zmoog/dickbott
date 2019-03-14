@@ -1,7 +1,5 @@
 export interface IIntentRepository {
-
     put(instance: IntentInstance): Promise<string>;
-
     get(id: string): Promise<IntentInstance>;
 }
 

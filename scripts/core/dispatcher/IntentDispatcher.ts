@@ -13,7 +13,6 @@ export class IntentDispatcher implements IIntentDispatcher {
     ) { }
 
     async dispatch<I, O>(intentName: string, entities: I): Promise<O> {
-        
         if (!this.container.isBoundNamed("Intent", intentName)) {
             return Promise.reject(`Cannot find any Intent registered with the identifier '${intentName}'.`);
         }
@@ -29,10 +28,8 @@ export class IntentDispatcher implements IIntentDispatcher {
     }
 
     async complete<I, O>(actions: InteractiveComponentActions): Promise<O> {
-
         let executionId = actions.callback_id;
         let intentExecution = await this.intentRepository.get(executionId);
-
         console.log("Intent instance execution data from repository: %j", intentExecution);
 
         if (!intentExecution) {

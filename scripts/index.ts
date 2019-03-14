@@ -1,3 +1,4 @@
+export { IntentDefinition } from "./core/intent/IntentDecorator";
 export { Intent } from "./core/intent/Intent";
 export { IIntentRepository, IntentInstance } from "./core/intent/IIntentRepository";
 export { InMemoryIntentRepository } from "./core/intent/InMemoryIntentRepository";
