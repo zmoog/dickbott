@@ -1,4 +1,4 @@
-## 0.8.0
+## 0.9.0
 FEATURES:
 
 * change registration of intent adding metadata
