@@ -7,24 +7,28 @@ import { IntentDispatcher } from "../../../scripts/core/dispatcher/IntentDispatc
 import { Test1Intent, Test2Intent } from "../../fixtures/IntentTestName";
 import { IIntentRepository } from "../../../scripts/core/intent/IIntentRepository";
 import { IMock, Mock } from "typemoq";
-
-let container = new Container();
-
-container.bind<Intent<string, string>>("Intent").to(Test1Intent).whenTargetNamed("Test1Intent");
-container.bind<Intent<string, string>>("Intent").to(Test2Intent).whenTargetNamed("Test2Intent");
-
+import { IIntentRegistry } from "../../../scripts/core/intent/IIntentRegistry";
 
 describe("Given a IntentDispacher", () => {
     let subject: IIntentDispatcher,
+        intentRegistry: IMock<IIntentRegistry>,
         intentRepository: IMock<IIntentRepository>;
 
     beforeEach(() => {
         intentRepository = Mock.ofType<IIntentRepository>();
-        subject = new IntentDispatcher(container, intentRepository.object);
+        intentRegistry = Mock.ofType<IIntentRegistry>();
+        subject = new IntentDispatcher(intentRegistry.object, intentRepository.object);
+
+        intentRegistry.setup(i => i.get("Test2Intent")).returns(() => new Test2Intent());
+        intentRegistry.setup(i => i.get("Test1Intent")).returns(() => new Test1Intent());
     });
 
     describe("and i want to process a intent but doesn't exist a manager of it", () => {
+        beforeEach(() => {
+            intentRegistry.setup(i => i.get("notRegistered")).throws(new Error("Error"));
+        })
         it("Should trigger a error", async () => {
+
             let error: string;
             try {
                 await subject.dispatch<{}, void>("notRegistered", {});
@@ -32,7 +36,7 @@ describe("Given a IntentDispacher", () => {
                 error = e;
             }
 
-            expect(error).to.be.eql("Cannot find any Intent registered with the identifier 'notRegistered'.");
+            expect(error).to.be.ok();
         });
     });
 

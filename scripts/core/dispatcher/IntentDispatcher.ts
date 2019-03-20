@@ -2,37 +2,29 @@ import { inject, injectable, interfaces } from "inversify";
 import { IIntentDispatcher } from "./IIntentDispatcher";
 import { Intent } from "../intent/Intent";
 import { IIntentRepository } from "../intent/IIntentRepository";
-import { InteractiveComponentActions } from "../../slack/Types";
+import { IIntentRegistry } from "../intent/IIntentRegistry";
 
 @injectable()
 export class IntentDispatcher implements IIntentDispatcher {
 
     constructor( 
-        @inject("Container") private container: interfaces.Container,
+        @inject("IIntentRegistry") private intentRegistry: IIntentRegistry,
         @inject("IntentRepository") private intentRepository: IIntentRepository
     ) { }
 
     async dispatch<I, O>(intentName: string, entities: I): Promise<O> {
-        
-        if (!this.container.isBoundNamed("Intent", intentName)) {
-            return Promise.reject(`Cannot find any Intent registered with the identifier '${intentName}'.`);
-        }
-        
+        const intent: Intent = this.intentRegistry.get(intentName);
         let executionId = await this.intentRepository.put({
             name: intentName,
             entities: entities
         });
 
-        let response = this.container.getNamed<Intent<any, any>>("Intent", intentName).execute(executionId, entities);
-
-        return response;
+        return intent.execute(executionId, entities);
     }
 
-    async complete<I, O>(actions: InteractiveComponentActions): Promise<O> {
-
+    async complete<I, O>(actions: any): Promise<O> {
         let executionId = actions.callback_id;
         let intentExecution = await this.intentRepository.get(executionId);
-
         console.log("Intent instance execution data from repository: %j", intentExecution);
 
         if (!intentExecution) {
@@ -40,15 +32,7 @@ export class IntentDispatcher implements IIntentDispatcher {
         }
 
         console.log("intentExecution: %j", intentExecution);
-
-        if (!this.container.isBoundNamed("Intent", intentExecution.name)) {
-            return Promise.reject(`Cannot find any Intent registered with the identifier ${intentExecution.name}.`);
-        }
-
-        // let intent = this.container.get<Intent<any, any>>(intentExecution.name);
-        let intent = this.container.getNamed<Intent<any, any>>("Intent", intentExecution.name);
-        console.log("confirming intent: %j", intent);
-
+        const intent: Intent = this.intentRegistry.get(intentExecution.name);
         return intent.complete(actions, executionId, intentExecution.entities);
     }
 }

@@ -1,9 +1,7 @@
 import { FulfillmentRequest, FulfillmentResponse } from "../dialogflow/Types";
-import { SlackMessage } from "../slack/Types";
 import { IntentDispatcher } from "../core/dispatcher/IntentDispatcher";
 import { inject, injectable } from "inversify";
-import { IIntentRepository } from "../core/intent/IIntentRepository";
-import * as _ from "lodash";
+import { assignIn } from "lodash";
 
 
 @injectable()
@@ -18,10 +16,8 @@ export class FulfillmentHandler {
         }
 
         try {
-            
             let intentName = event.result.metadata.intentName;
-            let entities = _.assignIn({}, event.result.parameters);
-
+            let entities = assignIn({}, event.result.parameters);
             entities.originalRequest = event.originalRequest;
 
             let slackMessage = await this.intentDispatcher.dispatch<any, any>(

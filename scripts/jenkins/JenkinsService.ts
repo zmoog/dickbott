@@ -22,8 +22,6 @@ export class JenkinsService implements IJenkinsService {
     build(job: Job): Promise<number> {
         console.log("launching job %j", job);
         return this.jenkins.job.build(job);
-        // console.log("Job launch disabled");
-        // return Promise.resolve(0);
     }
 
     info(): Promise<JenkinsInfo> {
