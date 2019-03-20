@@ -1,5 +1,5 @@
 import { IModule } from "../../scripts/modules/IModule";
-import { interfaces, Container } from "inversify";
+import { interfaces } from "inversify";
 import { IIntentRegistry } from "../../scripts/core/intent/IIntentRegistry";
 import { Test1Intent } from "./IntentTestName";
 

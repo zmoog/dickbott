@@ -2,8 +2,6 @@ import { IModule } from "./IModule";
 import { interfaces } from "inversify";
 import { HttpClient } from "../core/http/HttpClient";
 import { IHttpClient } from "../core/http/IHttpClient";
-import { ISlackWebAPI } from "../slack/ISlackWebAPI";
-import { SlackWebAPI } from "../slack/SlackWebAPI";
 import { IJenkinsService } from "../jenkins/IJenkinsService";
 import { JenkinsService } from "../jenkins/JenkinsService";
 import { IIntentDispatcher } from "../core/dispatcher/IIntentDispatcher";
@@ -16,7 +14,6 @@ import { IDynamoDBService } from "../aws/dynamodb/IDynamoDBService";
 import { DynamoDBService } from "../aws/dynamodb/DynamoDBService";
 import { IIntentRepository } from "../core/intent/IIntentRepository";
 import { InMemoryIntentRepository } from "../core/intent/InMemoryIntentRepository";
-import { IntroduceYourselfIntent } from "../intents/IntroduceYourselfIntent";
 import { EC2, RDS } from "aws-sdk";
 import { IRDSService } from "../aws/rds/IRDSService";
 import { RDSService } from "../aws/rds/RDSService";
@@ -35,7 +32,6 @@ export class DickBottModule implements IModule {
         container.bind<IIntentDispatcher>("IntentDispatcher").to(IntentDispatcher).inSingletonScope();
         container.bind<IIntentRepository>("IntentRepository").to(InMemoryIntentRepository).inSingletonScope();
         container.bind<IHttpClient>("HttpClient").to(HttpClient).inSingletonScope();
-        container.bind<ISlackWebAPI>("SlackWebAPI").to(SlackWebAPI).inSingletonScope();
         container.bind<IIntentRegistry>("IIntentRegistry").to(IntentRegistry).inSingletonScope();
 
         // Services
@@ -47,6 +43,5 @@ export class DickBottModule implements IModule {
     }
 
     register = (intentRegistry: IIntentRegistry) => {
-        intentRegistry.add(IntroduceYourselfIntent);
     }
 }

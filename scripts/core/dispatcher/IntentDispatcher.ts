@@ -2,7 +2,6 @@ import { inject, injectable, interfaces } from "inversify";
 import { IIntentDispatcher } from "./IIntentDispatcher";
 import { Intent } from "../intent/Intent";
 import { IIntentRepository } from "../intent/IIntentRepository";
-import { InteractiveComponentActions } from "../../slack/Types";
 import { IIntentRegistry } from "../intent/IIntentRegistry";
 
 @injectable()
@@ -23,7 +22,7 @@ export class IntentDispatcher implements IIntentDispatcher {
         return intent.execute(executionId, entities);
     }
 
-    async complete<I, O>(actions: InteractiveComponentActions): Promise<O> {
+    async complete<I, O>(actions: any): Promise<O> {
         let executionId = actions.callback_id;
         let intentExecution = await this.intentRepository.get(executionId);
         console.log("Intent instance execution data from repository: %j", intentExecution);

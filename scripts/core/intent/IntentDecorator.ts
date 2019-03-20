@@ -1,5 +1,4 @@
 import {injectable, decorate} from "inversify";
-import { Dictionary } from "lodash";
 
 export function IntentDefinition(metadata: IntentMetadata) {
     return function (target: any) {
@@ -15,7 +14,7 @@ export class IntentMetadataExtractor {
     }
 }
 
-export interface IntentMetadata extends Dictionary<any> {
+export interface IntentMetadata {
     name: string;
     description?: string; 
     examples?: {
@@ -23,5 +22,6 @@ export interface IntentMetadata extends Dictionary<any> {
         Elegant?: string
     };
     docs_url?: string;
+    [index: string]: any;
 }
 

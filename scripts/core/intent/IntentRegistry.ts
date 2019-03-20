@@ -27,10 +27,14 @@ export class IntentRegistry implements IIntentRegistry {
     }
     
     get(name: string): Intent {
-        if(!this.get(name)){
+        if(!this.has(name)){
             throw new Error(`No intent registered with name: ${name}`);
         }
         
         return this.container.getNamed<Intent>("Intent", name);
+    }
+
+    getAll(): Intent[] {
+        return this.container.getAll<Intent>("Intent");
     }
 }
