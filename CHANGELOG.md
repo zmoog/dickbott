@@ -1,3 +1,8 @@
+## 0.8.0
+FEATURES:
+
+* change registration of intent adding metadata
+
 ## 0.5.0 (Unreleased)
 
 FEATURES:
